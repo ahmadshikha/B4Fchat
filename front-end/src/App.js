@@ -1,5 +1,6 @@
 import './output.css';
 import HomePage from './pages/HomePage';
+import InfoPage from './pages/InfoPage';
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
      </div>
      <h1>wellcome</h1> */}
      
-     <HomePage/>
+     {/* <HomePage/> */}
+     <InfoPage/>
 
     </div>
   );
