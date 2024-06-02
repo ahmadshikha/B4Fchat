@@ -5,7 +5,7 @@ import { IoMdArrowBack } from "react-icons/io";
 function Contact() {
   
   return (
-    <div className='flex items-center justify-between px-4 py-3'>
+    <div className='sticky bg-white top-0 z-10 flex items-center justify-between px-4 py-3'>
       <div className='flex items-center'>
       <IoMdArrowBack  className='md:hidden size-6 mr-1'/>
         <div className="relative mr-2">

@@ -8,7 +8,7 @@ import ".././input.css";
 
 function SidebarTop() {
   return (
-    <div className="w-1/4">
+    <div className="">
       <div className="flex justify-between my-6 mx-4">
         <div>
           <span className="font-bold text-4xl">Chat</span>
@@ -19,7 +19,7 @@ function SidebarTop() {
         </div>
       </div>
       <div className="my-10  mx-6  border-solid rounded-xl border-black border-2  flex justify-around items-center">
-      <input className="border-none border-0 h-10 focus:border-none"  type="text" placeholder="Search a post" />
+      <input className="border-none border-0 h-10 active:border-none focus-visible:border-none"  type="text" placeholder="Search a post" />
       <FontAwesomeIcon icon={faSearch} />
     </div>
     </div>

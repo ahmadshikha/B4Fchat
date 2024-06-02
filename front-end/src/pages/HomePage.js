@@ -1,18 +1,22 @@
 import React from 'react'
 import SidebarTop from '../Components/SidebarTop';
 import Sidebar from '../Components/Sidebar';
-import React, { useState } from 'react'
 import Chat from '../Components/Chat'
 import Contact from '../Components/Contact'
 
 function HomePage() {
  
   return (
-    <div>
+    <div className='flex'>
+    <div className='hidden md:flex flex-col h-screen w-1/4'>
       <SidebarTop/>
       <Sidebar/>
+
+    </div>
+    <div className=' h-screen flex-grow'>
       <Contact />
-      <Chat/>
+      {/* <Chat/> */}
+    </div>
     </div>
   )
 }
