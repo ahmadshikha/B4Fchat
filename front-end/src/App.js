@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import {Route , Routes} from 'react-router-dom'
 import './output.css';
 import HomePage from './pages/HomePage';
 import InfoPage from './pages/InfoPage';
@@ -19,9 +19,8 @@ function App() {
      <h1>wellcome</h1> */}
      
      {/* <HomePage/> */}
-     {/* <InfoPage/> */}
+     <InfoPage/>
 
-=======
     <div className="App h-screen">
       <Routes>
           <Route path='/' element={<HomePage/>}/>

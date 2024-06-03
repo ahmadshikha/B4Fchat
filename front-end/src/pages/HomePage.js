@@ -8,14 +8,14 @@ function HomePage() {
  
   return (
     <div className='flex'>
-    <div className='hidden md:flex flex-col h-screen w-1/4'>
+    <div className='hidden md:flex flex-col h-screen w-[65%]'>
       <SidebarTop/>
       <Sidebar/>
 
     </div>
-    <div className=' h-screen flex-grow'>
+    <div className='h-screen overflow-auto flex-grow'>
       <Contact />
-      {/* <Chat/> */}
+      <Chat/>
     </div>
     </div>
   )

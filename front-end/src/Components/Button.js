@@ -4,9 +4,7 @@ function Button({text}) {
   return (
     <div>
       <input type='submit' 
-        className='bg-blue-300 h-12 my-4 px-72 pt-3 pb-8 
-        rounded-2xl text-white font-medium
-        md:bg-green-600 md:px-72 md:pb-4 md:pt-3 md:mb-10'
+        className='w-full bg-teal-500 text-white py-2 rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500'
         value={text}/>
         
     </div>
