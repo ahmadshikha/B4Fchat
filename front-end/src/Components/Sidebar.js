@@ -9,38 +9,27 @@ function Sidebar() {
     {id: 1, name:"ahmad",ostutas:true, message:"hello"},
     {id: 1, name:"ahmad",ostutas:true, message:"hello"},
     {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
-    {id: 1, name:"ahmad",ostutas:true, message:"hello"},
+
 
   ]
   return (
     <div className="w-1/4 bg-blue-500 max-h-full overflow-y-auto">
     {user.map(user => (
-    <div key={user.id}>
-       {user.name}
+    <div key={user.id} className='flex justify-around items-center h-20 bg-slate-600 m-2'>
+      <div>
+        <img className="w-14 h-14 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt=""/>
+      </div>
+      <div>
+        <p className=' ' style={{ fontSize:'25px' }}>{user.name}</p>
+        <span>last massege</span>
+      </div>
+      <div>
+        <span>10 h</span>
+      </div>
+      <div>
+        <span>🔴</span>
+      </div>
+        
     </div>
     ))}
   </div>
