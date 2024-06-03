@@ -8,7 +8,7 @@ function HomePage() {
  
   return (
     <div className='flex'>
-    <div className='hidden md:flex flex-col h-screen w-1/4'>
+    <div className='hidden md:flex flex-col h-screen w-[65%]'>
       <SidebarTop/>
       <Sidebar/>
 
