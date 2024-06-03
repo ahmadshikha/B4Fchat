@@ -13,7 +13,7 @@ function Sidebar() {
 
   ]
   return (
-    <div className="w-1/4 bg-blue-500 max-h-full overflow-y-auto">
+    <div className="flex-grow bg-blue-500 overflow-auto">
     {user.map(user => (
     <div key={user.id} className='flex justify-around items-center h-20 bg-slate-600 m-2'>
       <div>
