@@ -13,9 +13,9 @@ function HomePage() {
       <Sidebar/>
 
     </div>
-    <div className=' h-screen flex-grow'>
+    <div className='h-screen overflow-auto flex-grow'>
       <Contact />
-      {/* <Chat/> */}
+      <Chat/>
     </div>
     </div>
   )

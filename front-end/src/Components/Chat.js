@@ -12,14 +12,20 @@ function Chat() {
         <h3 className="text-primary">Username</h3>
         <p className="text-gray">Pinned message body</p>
       </div>
-      <div className="overflow-y-scroll break-words px-2 flex flex-col   bg-[#FAFAFA] ">
+      <div className=" break-words px-2 flex flex-col   bg-[#FAFAFA] ">
         <p className="text-gray mx-auto">May 21,2024</p>
         <SentMessage/>
+        <SentMessage/>
+        <SentMessage/>
+        <SentMessage/>
+        <SentMessage/>
+        <ReceivedMessage/>
+        
         
       </div>
-      <div className="sticky bottom-2 flex items-center w-full  ml-4 ">
+      <div className="sticky bottom-2 flex items-center w-[97%]  ml-4 ">
         <input placeholder="Write your message..." className="px-2 h-16 mr-1 flex-grow border border-[#E5E5EA] rounded-2xl" type="text" />
-        <button className="bg-primary p-3 mr-6 rounded-full text-white ">
+        <button className="bg-primary p-3  rounded-full text-white ">
           <IoIosSend className="size-8"/>
         </button>
       </div>
