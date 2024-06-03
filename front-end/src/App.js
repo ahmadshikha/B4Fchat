@@ -2,12 +2,13 @@ import { Route, Routes } from 'react-router-dom';
 import './output.css';
 import HomePage from './pages/HomePage';
 import InfoPage from './pages/InfoPage';
+import WelcomePage from './pages/WelcomePage';
 
 
 
 function App() {
   return (
-<<<<<<< HEAD
+// <<<<<<< HEAD
     <div className="">
 {/*      
      <div className='group/yazan'>
@@ -18,14 +19,16 @@ function App() {
      <h1>wellcome</h1> */}
      
      {/* <HomePage/> */}
-     <InfoPage/>
+     {/* <InfoPage/> */}
 
 =======
     <div className="App h-screen">
       <Routes>
           <Route path='/' element={<HomePage/>}/>
+          <Route path='/wellcome' element={<WelcomePage/>}/>
       </Routes>
->>>>>>> bc877cc2ee2ee89fa7e9cc242eddf4d372505882
+{/* >>>>>>> bc877cc2ee2ee89fa7e9cc242eddf4d372505882 */}
+    </div>
     </div>
   );
 }
