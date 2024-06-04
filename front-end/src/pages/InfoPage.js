@@ -6,6 +6,7 @@ import png from "../images/0px.png";
 const InfoPage = () => {
   const [preview, setPreview] = useState(png);
   const navigate = useNavigate()
+
   const ToHome = (e) =>{
     e.preventDefault()
     navigate('/')
@@ -61,7 +62,6 @@ const InfoPage = () => {
           <div>
             <input
               type="text"
-              required
               placeholder="Full name"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus: ring-primary"
             />
@@ -69,7 +69,6 @@ const InfoPage = () => {
           <div>
             <input
               type="email"
-              required
               placeholder="name@example.com"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 
               focus:ring-primary"
@@ -79,21 +78,20 @@ const InfoPage = () => {
           <div className="relative">
             <input
               type="date"
-              required
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2
                focus:ring-primary"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="relative">
-              <select required className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+              <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                 <option>City</option>
                 <option>City 1</option>
                 <option>City 2</option>
               </select>
             </div>
             <div className="relative">
-              <select required className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+              <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                 <option>Area</option>
                 <option>Area 1</option>
                 <option>Area 2</option>
