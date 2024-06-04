@@ -1,4 +1,9 @@
 import React from 'react'
+import Grupimage from '../images/Group 30.svg'
+import Sterimage from '../images/small star.svg'
+import Button from '../Components/Button';
+
+
 
 function VerificationPage() {
   return (
@@ -13,7 +18,7 @@ function VerificationPage() {
           <div
             className="flex items-center justify-center space-x-2 md:ml-8 md:w-96"
           >
-            <img className="md:w-96 md:ml-14" src="./images/Group 30.svg" />
+            <img className="md:w-96 md:ml-14" src={Grupimage} />
           </div>
 
           <div className="div1">
@@ -57,12 +62,8 @@ function VerificationPage() {
                   className="w-12 h-12  m-1text-center border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full bg-teal-500 text-white py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500"
-              >
-                Verify
-              </button>
+              <Button text={'Verify'}/>
+
             </form>
             <p className="text-gray-600">
               Didn't get the code?

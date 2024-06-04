@@ -1,4 +1,7 @@
 import React from 'react'
+import Grupimage from '../images/Group 30.svg'
+import Button from '../Components/Button';
+
 
 function WelcomePage() {
   return (
@@ -15,7 +18,7 @@ function WelcomePage() {
           >
             <img
               className="md:w-96 md:h-[300px] md:ml-14"
-              src="./images//Group 30.svg"
+              src={Grupimage}
             />
           </div>
           <div className="div1 w-96">
@@ -36,12 +39,7 @@ function WelcomePage() {
                   className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                 />
               </div>
-              <button
-                type="submit"
-                className="w-full bg-teal-500 text-white py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500"
-              >
-                Sign in
-              </button>
+              <Button text={'Sign In'}/>
             </form>
           </div>
         </div>

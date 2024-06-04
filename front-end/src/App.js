@@ -3,6 +3,7 @@ import './output.css';
 import HomePage from './pages/HomePage';
 import InfoPage from './pages/InfoPage';
 import WelcomePage from './pages/WelcomePage';
+import VerificationPage from './pages/VerificationPage';
 
 
 
@@ -19,14 +20,17 @@ function App() {
      <h1>wellcome</h1> */}
      
      {/* <HomePage/> */}
-     <InfoPage/>
+  
 
     <div className="App h-screen">
       <Routes>
           <Route path='/' element={<HomePage/>}/>
-          <Route path='/wellcome' element={<WelcomePage/>}/>
+          <Route path='/WelcomePage' element={<WelcomePage/>}/>
+          <Route path='/VerificationPage' element={<VerificationPage/>}/>
+          <Route path='/InfoPage' element={<InfoPage/>}/>
+
       </Routes>
-{/* >>>>>>> bc877cc2ee2ee89fa7e9cc242eddf4d372505882 */}
+
     </div>
     </div>
   );
