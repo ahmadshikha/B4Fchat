@@ -18,7 +18,7 @@ function Sidebar() {
     <div  className="flex-grow  overflow-auto">
     {user.map(user => (
     <div key={user.id} className='hover:bg-green-50 flex justify-around items-center h-[5.3rem] '>
-      <div className="relative mx-3 ">
+      <div className="relative mx-5 ">
           <img className="w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt=""/>
           <span className={`bottom-0 left-10 absolute  w-3.5 h-3.5 ${user.ostutas?"bg-online": "bg-gray" }  border-2 border-white  rounded-full`}></span>
       </div>
