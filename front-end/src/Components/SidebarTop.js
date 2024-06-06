@@ -13,7 +13,7 @@ function SidebarTop() {
     <div className="">
       <div className="flex justify-between mt-6 mx-3">
         <div>
-          <span className="font-bold text-4xl ml-2">Chat</span>
+          <span className="font-bold text-4xl ml-2">Chats</span>
         </div>
         <div className="w-20 flex items-center justify-around">
           <FontAwesomeIcon icon={faBars} className="size-5" />

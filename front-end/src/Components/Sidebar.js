@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaCircle } from "react-icons/fa";
 
 function Sidebar() {
   const user=[
@@ -27,10 +28,10 @@ function Sidebar() {
         <span className='text-[#8E8E93]'>last massege</span>
       </div>
       <div className='h-full flex flex-col-reverse'>
-        <span className='text-[#8E8E93] '>.10 h</span>
+        <span className='text-[#8E8E93] mb-3 '>.10 h</span>
       </div>
       <div className='mx-3'>
-        <span className={`${user.read?'hidden':""} `}>🔴</span>
+        <span className={`${user.read?'hidden':""} `}><FaCircle className='text-red-500 h-4' /></span>
       </div>
         
     </div>
