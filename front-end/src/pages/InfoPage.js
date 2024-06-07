@@ -14,7 +14,6 @@ const InfoPage = () => {
     setInputType('text');
   };
 
-
   const [preview, setPreview] = useState(png);
   const navigate = useNavigate()
 
@@ -92,19 +91,19 @@ const InfoPage = () => {
     placeholder="Birth Of Date"
     onFocus={ handleFocus} 
     onBlur={handleBlur} 
-    className="w-full px-4 py-3 my-1 border border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary"
+    className="w-full px-4 py-3 my-1 border border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary text-gray"
   />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="relative select" >
-            <select className=" select w-full px-4 py-2 my-1 border appearance-none border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary">
+            <select className=" select w-full px-4 py-2 my-1 border appearance-none border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary text-gray">
                 <option>City</option>
                 <option>Area 1</option>
                 <option>Area 2</option>
               </select>
             </div>
             <div className="relative select">
-              <select className="w-full px-4 py-2 my-1 border appearance-none border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary">
+              <select className="w-full px-4 py-2 my-1 border appearance-none border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary text-gray">
                 <option>Area</option>
                 <option>Area 1</option>
                 <option>Area 2</option>

@@ -11,6 +11,8 @@ module.exports = {
         online: '#34C759',
         darkGray: '#F2F2F7',
         gray: '#8E8E93',
+        slide:'#FCFCFC',
+        slide_red:'#FF3B30'
       }
     },
   },
