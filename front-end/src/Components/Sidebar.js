@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaCircle } from "react-icons/fa";
 
 function Sidebar() {
   const user=[
@@ -17,9 +18,9 @@ function Sidebar() {
   return (
     <div  className="flex-grow  overflow-auto">
     {user.map(user => (
-    <div key={user.id} className='flex justify-around items-center h-[4.30rem] m-2'>
-      <div className="relative mx-3 ">
-          <img className="w-14 h-14 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt=""/>
+    <div key={user.id} className='hover:bg-green-50 flex justify-around items-center h-[5.3rem] '>
+      <div className="relative mx-5 ">
+          <img className="w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt=""/>
           <span className={`bottom-0 left-10 absolute  w-3.5 h-3.5 ${user.ostutas?"bg-online": "bg-gray" }  border-2 border-white  rounded-full`}></span>
       </div>
       <div className='flex-grow'>
@@ -27,10 +28,10 @@ function Sidebar() {
         <span className='text-[#8E8E93]'>last massege</span>
       </div>
       <div className='h-full flex flex-col-reverse'>
-        <span className='text-[#8E8E93] '>10 h</span>
+        <span className='text-[#8E8E93] mb-3 '>.10 h</span>
       </div>
       <div className='mx-3'>
-        <span className={`${user.read?'hidden':""} `}>🔴</span>
+        <span className={`${user.read?'hidden':""} `}><FaCircle className='text-red-500 h-4' /></span>
       </div>
         
     </div>

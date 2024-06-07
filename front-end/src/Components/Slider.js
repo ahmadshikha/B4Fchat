@@ -11,7 +11,7 @@ function Slider() {
             alt="Profile Picture"
           />
           <div>
-            <h2 className="text-xl font-bold text-gray-800">Mhd Shaar</h2>
+            <h2 className="text-xl font-bold text-gray-800">Mhd</h2>
             <p className="text-gray-600">+963 982 305 060</p>
           </div>
           <button className="ml-auto text-gray-500 hover:text-gray-700 focus:outline-none">

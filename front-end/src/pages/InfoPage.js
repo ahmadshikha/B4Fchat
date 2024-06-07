@@ -2,8 +2,19 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Components/Button";
 import png from "../images/0px.png";
-
+import './arrowSelect.css'
 const InfoPage = () => {
+  const [inputType, setInputType] = useState('text'); // Initialize inputType to 'text'
+
+  const handleFocus = () => {
+    setInputType('date');
+  };
+
+  const handleBlur = () => {
+    setInputType('text');
+  };
+
+
   const [preview, setPreview] = useState(png);
   const navigate = useNavigate()
 
@@ -63,35 +74,37 @@ const InfoPage = () => {
             <input
               type="text"
               placeholder="Full name"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus: ring-primary"
+              className="w-full px-4 py-3 my-1 border border-gray rounded-2xl focus:outline-none focus:ring-2 focus: ring-primary"
             />
           </div>
           <div>
             <input
               type="email"
               placeholder="name@example.com"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 
+              className="w-full px-4 py-3 my-1 border border-gray rounded-2xl focus:outline-none focus:ring-2 
               focus:ring-primary"
             />
           </div>
 
           <div className="relative">
-            <input
-              type="date"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2
-               focus:ring-primary"
-            />
+          <input
+    type={inputType} 
+    placeholder="Birth Of Date"
+    onFocus={ handleFocus} 
+    onBlur={handleBlur} 
+    className="w-full px-4 py-3 my-1 border border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary"
+  />
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <div className="relative">
-              <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+            <div className="relative select" >
+            <select className=" select w-full px-4 py-2 my-1 border appearance-none border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary">
                 <option>City</option>
-                <option>City 1</option>
-                <option>City 2</option>
+                <option>Area 1</option>
+                <option>Area 2</option>
               </select>
             </div>
-            <div className="relative">
-              <select className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+            <div className="relative select">
+              <select className="w-full px-4 py-2 my-1 border appearance-none border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary">
                 <option>Area</option>
                 <option>Area 1</option>
                 <option>Area 2</option>
@@ -104,5 +117,8 @@ const InfoPage = () => {
     </div>
   );
 };
+
+
+
 
 export default InfoPage;
