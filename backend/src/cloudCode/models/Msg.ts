@@ -1,5 +1,4 @@
 import Conversation from './Conversation';
-import User from './User';
 
 export default class Msg extends Parse.Object {
   constructor() {
@@ -13,10 +12,10 @@ export default class Msg extends Parse.Object {
     super.set('text', value);
   }
 
-  get reciver(): User {
+  get reciver(): Parse.User {
     return super.get('reciver');
   }
-  set reciver(value: User) {
+  set reciver(value: Parse.User) {
     super.set('reciver', value);
   }
 

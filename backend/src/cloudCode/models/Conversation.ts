@@ -1,14 +1,13 @@
-import User from './User';
 
 export default class Conversation extends Parse.Object {
   constructor() {
     super('Conversation');
   }
 
-  get users(): User[] {
+  get users(): Parse.User[] {
     return super.get('users');
   }
-  set users(value: User[]) {
+  set users(value: Parse.User[]) {
     super.set('users', value);
   }
 }
