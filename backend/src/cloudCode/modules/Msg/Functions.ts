@@ -11,8 +11,8 @@ Parse.Cloud.beforeSave(
     const sessionToken = req.user?.getSessionToken();
 
     const usersList = [object.reciver, user];
-    console.log(usersList);
-
+    console.log(sessionToken,"asdf");
+    
     let conversation = await new Parse.Query(Conversation)
       .containedBy('users', usersList)
       .first({sessionToken: sessionToken});
