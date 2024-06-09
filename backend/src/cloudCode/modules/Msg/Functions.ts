@@ -1,13 +1,12 @@
 import Conversation from '../../models/Conversation';
 import Employee from '../../models/Employee';
 import Msg from '../../models/Msg';
-import User from '../../models/User';
 
 Parse.Cloud.beforeSave(
   Msg,
   async req => {
     const object = req.object;
-    const user = req.user as User;
+    const user = req.user as Parse.User;
     const sessionToken = req.user?.getSessionToken();
 
     const usersList = [object.reciver, user];
@@ -68,7 +67,7 @@ Parse.Cloud.beforeSave(
 
 Parse.Cloud.define('getConversations', async req => {
   const object = req.params;
-  const user = req.user as User;
+  const user = req.user as Parse.User;
   const sessionToken = req.user?.getSessionToken();
 
   const conversations = await new Parse.Query(Conversation).include("users").find({
@@ -113,7 +112,7 @@ Parse.Cloud.define('getConversations', async req => {
 
 Parse.Cloud.define('getChat', async req => {
   const {conversation} = req.params;
-  const user = req.user as User;
+  const user = req.user as Parse.User;
   const sessionToken = req.user?.getSessionToken();
 
   const msgs = await new Parse.Query(Msg)
