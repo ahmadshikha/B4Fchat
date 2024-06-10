@@ -1,10 +1,22 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "../Components/Button";
 import png from "../images/0px.png";
 import './arrowSelect.css'
+import Dialog from "../Components/Dialog";
+import { login } from "../rtk/slices/userSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const InfoPage = () => {
-  const [inputType, setInputType] = useState('text'); // Initialize inputType to 'text'
+  const [inputType, setInputType] = useState('text'); 
+  const [username,setUsername] = useState('')
+  const [password,setPassword] = useState('')
+  const [date,setDate] = useState('')
+  const [country,setCountry] = useState('Area')
+  const [email,setEmail] = useState('')
+  const [city,setCity] = useState('City')
+  const [error,setError]= useState('')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleFocus = () => {
     setInputType('date');
@@ -15,11 +27,50 @@ const InfoPage = () => {
   };
 
   const [preview, setPreview] = useState(png);
-  const navigate = useNavigate()
+  const [isOpen, setIsOpen] = useState(false);
 
-  const ToHome = (e) =>{
+   const ToHome = async (e) =>{
+    console.log({ username,
+      password,
+      email,
+      countryName:country,
+      cityName:city,
+      birthdate:date
+    });
     e.preventDefault()
-    navigate('/')
+    const res = await fetch('http://localhost:1337/api/classes/_User',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'X-Parse-REST-API-Key': 'restAPIKey',
+      'X-Parse-Application-Id': 'appId',
+
+      },
+      body:JSON.stringify(
+       { username,
+        password,
+        email,
+        countryName:country,
+        cityName:city,
+        birthdate:date
+      }
+
+      )
+    })
+    if(res.ok){
+      
+      const data = await res.json()
+      console.log(data,'ss');
+      dispatch(login(data.sessionToken))
+      navigate('/')
+    }
+    else{
+      const data = await res.json()
+      setError(data.error)
+      console.log(data,'ss');
+
+      handleOpen()
+    }
   }
   const onFileChange = (e) => {
     const selectedFile = e.target.files[0]
@@ -27,8 +78,18 @@ const InfoPage = () => {
       setPreview(URL.createObjectURL(selectedFile))
     }
   }
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
+            <Dialog isLogin={false} isOpen={isOpen} onClose={handleClose}>
+        <p>{error}</p>
+      </Dialog>
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
         <div className="flex justify-center mb-4">
           <div className="relative">
@@ -71,6 +132,8 @@ const InfoPage = () => {
         <form className="space-y-4">
           <div>
             <input
+            value={username}
+            onChange={e=>setUsername(e.target.value)}
               type="text"
               placeholder="Full name"
               className="w-full px-4 py-3 my-1 border border-gray rounded-2xl focus:outline-none focus:ring-2 focus: ring-primary"
@@ -78,6 +141,17 @@ const InfoPage = () => {
           </div>
           <div>
             <input
+            value={password}
+            onChange={e=>setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+              className="w-full px-4 py-3 my-1 border border-gray rounded-2xl focus:outline-none focus:ring-2 focus: ring-primary"
+            />
+          </div>
+          <div>
+            <input
+            value={email}
+            onChange={e=>setEmail(e.target.value)}
               type="email"
               placeholder="name@example.com"
               className="w-full px-4 py-3 my-1 border border-gray rounded-2xl focus:outline-none focus:ring-2 
@@ -87,6 +161,8 @@ const InfoPage = () => {
 
           <div className="relative">
           <input
+          value={date}
+          onChange={e=>setDate(e.target.value)}
     type={inputType} 
     placeholder="Birth Of Date"
     onFocus={ handleFocus} 
@@ -96,14 +172,16 @@ const InfoPage = () => {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="relative select" >
-            <select className=" select w-full px-4 py-2 my-1 border appearance-none border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary text-gray">
+            <select value={city}
+            onChange={e=>setCity(e.target.value)} className=" select w-full px-4 py-2 my-1 border appearance-none border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary text-gray">
                 <option>City</option>
                 <option>Area 1</option>
                 <option>Area 2</option>
               </select>
             </div>
             <div className="relative select">
-              <select className="w-full px-4 py-2 my-1 border appearance-none border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary text-gray">
+              <select value={country}
+            onChange={e=>setCountry(e.target.value)} className="w-full px-4 py-2 my-1 border appearance-none border-gray rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary text-gray">
                 <option>Area</option>
                 <option>Area 1</option>
                 <option>Area 2</option>

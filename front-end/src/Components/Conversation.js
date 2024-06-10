@@ -1,9 +1,14 @@
 import React from 'react'
 import { FaCircle } from "react-icons/fa";
+import { useDispatch } from 'react-redux';
+import { startChatting } from '../rtk/slices/conversationSlice';
 function Conversation(props) {
-  console.log(props);
+  const dispatch = useDispatch()
+  function handleClick(){
+    dispatch(startChatting(props.id))
+  }
   return (
-    <div onClick={() => alert('welcome')} className = "flex-grow  overflow-auto">
+    <div onClick={() => handleClick()} className = "flex-grow  overflow-auto">
     <div key={props.id} className ='hover:bg-green-50 flex justify-around items-center h-[5.3rem]'>
       <div className="relative mx-5 ">
           <img className = "w-16 h-16 rounded-full" src = {props.pic} alt = ""/>

@@ -6,10 +6,11 @@ export const getConversations = createAsyncThunk('conversationSlice/getConversat
     headers:{
       'X-Parse-REST-API-Key': 'restAPIKey',
       'X-Parse-Application-Id': 'appId',
-      'X-Parse-Session-Token': 'r:b67b8d2ce787ef4040d5b7d6674d48d7'
+      'X-Parse-Session-Token': 'r:4178c4c898d6b47790e080f75321febd'
     }
   })
   const data = await res.json()
+  console.log(data,"meo");
     return data.result.conversations.map((conversation,index) => {return{
       id: conversation.objectId,
       name: conversation.users[0].username,
@@ -17,17 +18,23 @@ export const getConversations = createAsyncThunk('conversationSlice/getConversat
       date: data.result.msgs[index].createdAt.split("T")[1].slice(0,2)+"h",
     }})
 })
-
 const conversationSlice = createSlice({
-  initialState: [],
+  initialState: {
+    conversations:[],
+    chatId: null
+  },
   name: 'conversationSlice',
-  reducers: {},
+  reducers: {
+    startChatting:(state,action)=>{
+      state.chatId = action.payload
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(getConversations.fulfilled , (state , action) => {
-      return action.payload
+      return {...state,conversations:action.payload}
     })
   }
 })
 
-export const {} = conversationSlice.actions
+export const {startChatting} = conversationSlice.actions
 export default conversationSlice.reducer
