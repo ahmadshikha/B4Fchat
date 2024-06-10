@@ -5,6 +5,8 @@ import ReceivedMessage from "./ReceivedMessage";
 import { IoIosSend } from "react-icons/io";
 
 function Chat() {
+
+  
   return (
     <div className="relative flex flex-col ">
       <div className="sticky z-10 bg-white top-16 p-3 flex items-center justify-evenly border-darkGray border border-x-0">

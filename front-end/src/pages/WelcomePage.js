@@ -23,7 +23,7 @@ function WelcomePage() {
                 <div>
                   <input
                     type="text"
-                    placeholder="📞 Phone Number"
+                    placeholder="📞Phone Number"
                     className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-teal-500"
                   />
                 </div>
