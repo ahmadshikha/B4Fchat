@@ -28,9 +28,8 @@ function WelcomePage() {
       }),
     });
     if(res.ok){
-      
       const data = await res.json()
-      dispatch(login(data.sessionToken))
+      dispatch(login({token:data.sessionToken,name:username,id:data.objectId}))
     }
     else{
       handleOpen()

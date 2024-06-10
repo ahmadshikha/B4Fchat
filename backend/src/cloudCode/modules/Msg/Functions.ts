@@ -13,7 +13,7 @@ Parse.Cloud.beforeSave(
     console.log(sessionToken,"asdf");
     
     let conversation = await new Parse.Query(Conversation)
-      .containedBy('users', usersList)
+      .containsAll('users', usersList)
       .first({ sessionToken: sessionToken });
     console.log(conversation);
 
@@ -118,12 +118,28 @@ Parse.Cloud.define('getConversations', async req => {
 
 Parse.Cloud.define('getChat', async req => {
   const { conversation } = req.params;
+  const user = req.user as Parse.User;
+
   const sessionToken = req.user?.getSessionToken();
+  const loggedInUserId = user.id;
 
   const msgs = await new Parse.Query(Msg)
     .equalTo('conversation', { __type: "Pointer", className: "Conversation", objectId: conversation })
     .select('reciver', "text", '-conversation')
     .find({ sessionToken })
+    let reciver = await new Parse.Query(Conversation)
+    .equalTo("objectId",conversation)
+    .include("users")
+    .first({sessionToken})
+    let users;
+    if(reciver){
+      users = reciver.get("users");
 
-  return msgs
+      const updatedUsers = users.filter((u: any) => u.id !== loggedInUserId);
+
+      reciver.set("users", updatedUsers);
+      reciver = reciver.get("users")
+    }
+
+  return {msgs,reciver}
 })

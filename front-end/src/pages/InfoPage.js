@@ -30,13 +30,7 @@ const InfoPage = () => {
   const [isOpen, setIsOpen] = useState(false);
 
    const ToHome = async (e) =>{
-    console.log({ username,
-      password,
-      email,
-      countryName:country,
-      cityName:city,
-      birthdate:date
-    });
+
     e.preventDefault()
     const res = await fetch('http://localhost:1337/api/classes/_User',{
       method:'POST',
@@ -60,14 +54,12 @@ const InfoPage = () => {
     if(res.ok){
       
       const data = await res.json()
-      console.log(data,'ss');
-      dispatch(login(data.sessionToken))
+      dispatch(login({token:data.sessionToken,name:username,id:data.objectId}))
       navigate('/')
     }
     else{
       const data = await res.json()
       setError(data.error)
-      console.log(data,'ss');
 
       handleOpen()
     }

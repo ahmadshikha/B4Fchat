@@ -1,7 +1,7 @@
 import { IoCheckmarkDoneOutline } from "react-icons/io5";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { useState,useRef,useEffect } from "react";
-function ReceivedMessage({handleMessageClick}) {
+function ReceivedMessage({text,time}) {
   const [overlay,setOverlay] = useState(false)
   const overlayRef = useRef(null);
 
@@ -19,13 +19,14 @@ function ReceivedMessage({handleMessageClick}) {
   }, [overlayRef]);
   return (
     <div className="relative group md:max-w-[50%] self-start my-2 ml-2 flex items-center mr-[10%] ">
-      <div onClick={handleMessageClick} className="max-w-full  py-1 px-4 rounded-r-2xl rounded-t-2xl text-black-200 mr-2 bg-darkGray">
+      <div  className="max-w-full  py-1 px-4 rounded-r-2xl rounded-t-2xl text-black-200 mr-2 bg-darkGray">
         <p className="pr-5 break-all">
-          meessage content
-          dsfsdsfsadfsdafddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddaasdfasdfas{" "}
+          {
+            text
+          }{" "}
         </p>
         <div className="flex justify-end items-center">
-          <p className="mr-1">11:00</p>
+          <p className="mr-1">{time}</p>
           <IoCheckmarkDoneOutline />
         </div>
       </div>
@@ -52,7 +53,7 @@ function ReceivedMessage({handleMessageClick}) {
               fill="black"
             />
           </svg>
-          <h3>Forward</h3>
+          <h3 className="mx-2">Forward</h3>
         </div>
         <div className='flex pl-3 pr-24 hover:cursor-pointer py-4 hover:bg-slate-50'>
           <svg
@@ -67,7 +68,7 @@ function ReceivedMessage({handleMessageClick}) {
               fill="black"
             />
           </svg>
-          <h3>Pin</h3>
+          <h3 className="mx-2">Pin</h3>
         </div>
       </div>
     </div>

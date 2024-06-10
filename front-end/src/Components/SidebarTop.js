@@ -5,10 +5,12 @@ import { CiSearch } from "react-icons/ci";
 import { PiPencilSimpleLine } from "react-icons/pi";
 import ".././input.css";
 import Conversation from "./Conversation";
+import { useSelector } from "react-redux";
 
 function SidebarTop({showConversations,setShowConversations}) {
   const [searchValue, setSearchValue] = useState("");
   const [users, setUsers] = useState([]);
+  const {token} = useSelector(state => state.users)
 
   useEffect(() => {
     async function fetchUsers() {
@@ -16,11 +18,11 @@ function SidebarTop({showConversations,setShowConversations}) {
         headers: {
           "X-Parse-REST-API-Key": "restAPIKey",
           "X-Parse-Application-Id": "appId",
-          "X-Parse-Session-Token": "r:4178c4c898d6b47790e080f75321febd",
+          "X-Parse-Session-Token": token,
         },
       });
       const data = await res.json();
-      setUsers(data.results.map((user) => ({ name: user.username })));
+      setUsers(data.results.map((user) => ({ name: user.username,id:user.objectId })));
     }
     fetchUsers();
   }, []);
@@ -66,9 +68,9 @@ function SidebarTop({showConversations,setShowConversations}) {
           <ul>
             {filteredNames.map((user) => {
               return (
-                <li key={user.name}>
+                <li key={user.id}>
                   <Conversation
-                    id={user.name}
+                    id={user.id}
                     pic={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
                     oStatus={false}
                     name={user.name}
@@ -187,7 +189,6 @@ export default SidebarTop;
 //       }
 //     })
 //     const data = await res.json()
-//     console.log(data,"data response");
 //     return data.results.map((user)=>{
 //       return{
 //         name: user.username

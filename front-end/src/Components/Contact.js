@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { CiSearch } from "react-icons/ci";
 import { IoMdArrowBack } from "react-icons/io";
+import { useSelector } from 'react-redux';
 
 function Contact() {
-  
+  const {receiver} = useSelector(state => state.conversations)
+
   return (
     <div className='sticky bg-white top-0 z-10 flex items-center justify-between px-4 py-3'>
       <div className='flex items-center'>
@@ -13,7 +15,7 @@ function Contact() {
           <span className="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-online border-2 border-white  rounded-full"></span>
         </div>
         <div className='mt-1'>
-          <h3 className='text-xl leading-4'>Yazan Alkhalil</h3>
+          <h3 className='text-xl leading-4'>{receiver.username}</h3>
           <p className='text-md text-gray-400'>Available</p>
         </div>
       </div>

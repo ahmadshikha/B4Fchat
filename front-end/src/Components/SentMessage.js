@@ -3,7 +3,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import { useState,useEffect,useRef } from "react";
 
 
-function SentMessage({handleMessageClick}) {
+function SentMessage({text,time}) {
   const [overlay,setOverlay] = useState(false)
   const overlayRef = useRef(null);
 
@@ -44,7 +44,7 @@ function SentMessage({handleMessageClick}) {
               fill="black"
             />
           </svg>
-          <h3>Forward</h3>
+          <h3 className="mx-2">Forward</h3>
         </div>
         <div className='flex pl-3 pr-24 hover:cursor-pointer py-4 hover:bg-slate-50'>
           <svg
@@ -59,7 +59,7 @@ function SentMessage({handleMessageClick}) {
               fill="black"
             />
           </svg>
-          <h3>Pin</h3>
+          <h3 className="mx-2">Pin</h3>
         </div>
         <div className='flex pl-3 pr-24 hover:cursor-pointer py-4 hover:bg-slate-50'>
           <svg
@@ -82,7 +82,7 @@ function SentMessage({handleMessageClick}) {
               fill="black"
             />
           </svg>
-          <h3>Edit</h3>
+          <h3 className="mx-2">Edit</h3>
         </div>
         <div className='flex pl-3 pr-24 hover:cursor-pointer py-4 hover:bg-slate-50'>
           <svg
@@ -113,15 +113,15 @@ function SentMessage({handleMessageClick}) {
               fill="black"
             />
           </svg>
-          <h3>Delete</h3>
+          <h3 className="mx-2">Delete</h3>
         </div>
       </div>
         <HiDotsHorizontal onClick={() =>setOverlay(true)} className='absolute -left-6 text-[#AEAEB2] hidden size-6 md:group-hover:block hover:cursor-pointer '/>
         <div className="group w-1 h-1"></div>
-        <div onClick={handleMessageClick} className=' py-1 px-4 rounded-l-2xl rounded-t-2xl text-[#FFF] mr-2 bg-primary'>
-            <p className="pr-5 break-all">meessage content ijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijijiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiissssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssi</p>
+        <div  className=' py-1 px-4 rounded-l-2xl rounded-t-2xl text-[#FFF] mr-2 bg-primary'>
+            <p className="pr-5 break-all">{text}</p>
             <div className='flex justify-end items-center'>
-                <p className="mr-1">11:00</p>
+                <p className="mr-1">{time}</p>
                 <IoCheckmarkDoneOutline />
             </div>
         </div>

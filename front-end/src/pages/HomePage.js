@@ -11,7 +11,7 @@ function HomePage() {
 
   return (
     <div className="flex">
-      <div className={`${!chatId ? "w-[29%]":"w-[75%]"} hidden md:flex flex-col h-screen `}>
+      <div className={`w-[29%] hidden md:flex flex-col h-screen `}>
         <SidebarTop
           showConversations={showConversations}
           setShowConversations={setShowConversations}

@@ -10,7 +10,6 @@ function Sidebar({showConversations}) {
     dispatch(getConversations())
     },[])
     const conversations = useSelector((state) => state.conversations.conversations)
-    console.log(conversations,'mm');
   return(<div>
     
     {!showConversations ? conversations.map((conversation)=>{
