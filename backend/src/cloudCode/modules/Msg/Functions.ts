@@ -14,7 +14,7 @@ Parse.Cloud.beforeSave(
 
     let conversation = await new Parse.Query(Conversation)
       .containedBy('users', usersList)
-      .first({sessionToken: sessionToken});
+      .first({ sessionToken: sessionToken });
     console.log(conversation);
 
     if (!conversation) {
@@ -70,55 +70,60 @@ Parse.Cloud.define('getConversations', async req => {
   const user = req.user as Parse.User;
   const sessionToken = req.user?.getSessionToken();
 
-  const conversations = await new Parse.Query(Conversation).include("users").find({
-    sessionToken: sessionToken,
-  });
-  // const myMsgs = msg.map(msg => {
-  //   return {
-  //     objectId: msg?.id,
-  //     className: msg?.className,
-  //     text: msg?.text,
-  //     conversation: {
-  //       objectId: msg?.conversation?.id,
-  //       className: msg?.conversation?.className,
-  //     },
-  //     reciver: {
-  //       objectId: msg?.reciver?.id,
-  //       className: msg?.reciver?.className,
-  //       username: msg?.reciver?.getUsername(),
-  //     },
-  //   };
-  // });
+  const loggedInUserId = user.id;
+
+
+  const query = new Parse.Query("Conversation");
+  query.include("users");
+
+  const conversations = await query.find({ sessionToken: sessionToken });
+  let userArray: any = []
+  for (const conversation of conversations) {
+    const users = conversation.get("users");
+
+    const updatedUsers = users.filter((u: any) => u.id !== loggedInUserId);
+
+    conversation.set("users", updatedUsers);
+    userArray.push({
+      id: conversation,
+      user: conversation.get("users"),
+      message: ""
+    })
+
+  }
+
+
 
   const msgsQuery: any = [];
-  conversations.forEach(conversation => {
+  conversations.forEach((conversation) => {
     msgsQuery.push(
       new Parse.Query(Msg)
         .equalTo('conversation', conversation)
         .descending('createdAt')
-        .select('reciver',"text",'-conversation')
-        .first({sessionToken: sessionToken})
+        .select('-reciver', "text", '-conversation','-updatedAt')
+        .first({ sessionToken: sessionToken })
     );
   });
-
   let msgs = await Promise.all(msgsQuery);
- 
-  return {conversations,msgs};
-  
+  msgs.forEach((msg,index) =>{
+    userArray[index].message = msg
+  })
+
+  return {  userArray };
+
   // return myMsgs;
 });
 
 
 
 Parse.Cloud.define('getChat', async req => {
-  const {conversation} = req.params;
-  const user = req.user as Parse.User;
+  const { conversation } = req.params;
   const sessionToken = req.user?.getSessionToken();
 
   const msgs = await new Parse.Query(Msg)
-  .equalTo('conversation', { __type: "Pointer", className: "Conversation", objectId: conversation })
-  .select('reciver',"text",'-conversation')
-  .find({sessionToken: sessionToken})
+    .equalTo('conversation', { __type: "Pointer", className: "Conversation", objectId: conversation })
+    .select('reciver', "text", '-conversation')
+    .find({ sessionToken })
 
   return msgs
 })
