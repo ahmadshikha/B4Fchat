@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import image from "../images/Group 30.svg";
 import Button from "../Components/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../rtk/slices/userSlice";
 import Dialog from "../Components/Dialog";
@@ -83,6 +83,10 @@ function WelcomePage() {
                 </div>
                 <Button text={"Sign In"} handleClick={handleClick}/>
               </form>
+              <div className="mt-2">
+
+              <span>don't have an account </span><Link className="text-primary" to='/info'>register</Link>
+              </div>
             </div>
           </div>
         </div>

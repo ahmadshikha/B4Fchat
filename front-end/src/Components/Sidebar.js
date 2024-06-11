@@ -18,6 +18,8 @@ function Sidebar({showConversations}) {
         msg={conversation.msg}
         date={conversation.date}
         pic={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
+        firstMessage={false}
+        read={true}
         />
     }): null}
   </div>

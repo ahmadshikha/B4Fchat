@@ -13,7 +13,7 @@ Parse.Cloud.beforeSave(
     console.log(sessionToken,"asdf");
     
     let conversation = await new Parse.Query(Conversation)
-      .containsAll('users', usersList)
+      .containedIn('users', usersList)
       .first({ sessionToken: sessionToken });
     console.log(conversation);
 

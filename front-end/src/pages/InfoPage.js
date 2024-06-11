@@ -5,7 +5,7 @@ import './arrowSelect.css'
 import Dialog from "../Components/Dialog";
 import { login } from "../rtk/slices/userSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const InfoPage = () => {
   const [inputType, setInputType] = useState('text'); 
   const [username,setUsername] = useState('')
@@ -182,6 +182,10 @@ const InfoPage = () => {
           </div>
           <Button text={"Sign In"} handleClick={ToHome}/>
         </form>
+        <div className="mt-2">
+
+              <span>already have an account </span><Link className="text-primary" to='/'>login</Link>
+              </div>
       </div>
     </div>
   );

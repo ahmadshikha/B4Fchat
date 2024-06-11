@@ -1,12 +1,15 @@
 import React from 'react'
 import { FaCircle } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
-import { getChat, startChatting } from '../rtk/slices/conversationSlice';
+import { getChat, setReceiver, startChatting } from '../rtk/slices/conversationSlice';
 function Conversation(props) {
   const dispatch = useDispatch()
   function handleClick(){
-    dispatch(startChatting(props.id))
     dispatch(getChat(props.id));
+    dispatch(startChatting({id:props.id,name:props.name}))
+    if(props.firstMessage){
+      dispatch(setReceiver(props.id))
+    }
   }
   return (
     <div onClick={() => handleClick()} className = "flex-grow  overflow-auto">

@@ -18,7 +18,7 @@ function HomePage() {
         />
         <Sidebar showConversations={showConversations} />
       </div>
-      <div className="h-screen overflow-auto flex-grow">
+      <div className="h-screen overflow-auto bg-[#FAFAFA] flex-grow">
         {chatId ? (
           <>
             <Contact />

@@ -77,6 +77,7 @@ function SidebarTop({showConversations,setShowConversations}) {
                     msg={""}
                     date={""}
                     read={true}
+                    firstMessage={true}
                   />
                 </li>
               );

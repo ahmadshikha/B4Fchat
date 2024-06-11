@@ -34,10 +34,11 @@ export const getConversations = createAsyncThunk('conversationSlice/getConversat
 })
 
 
-export const getChat = createAsyncThunk('conversationSlice/getChat' , async (action, { getState }) => {
+export const getChat = createAsyncThunk('conversationSlice/getChat' , async (action, { getState,dispatch }) => {
   const {users} = getState()
   const token = users.token
   const id = users.id
+  const name = users.name
   const res = await fetch('http://localhost:1337/api/functions/getChat',{
     method: 'POST',
     headers:{
@@ -51,10 +52,12 @@ export const getChat = createAsyncThunk('conversationSlice/getChat' , async (act
   if(res.ok){
     const data = await res.json()
     console.log(data,"sds");
+    if(data.result.msgs.length === 1){
+      dispatch(getConversations())
+    }
     if(data.result.reciver.length==0){
-      console.log("asdf");
       data.result.reciver.push({
-    username:"you",
+    username:name,
     objectId : id
     })      
     }
@@ -66,13 +69,18 @@ const conversationSlice = createSlice({
     conversations:[],
     chatId: null,
     chat: [],
-    receiver: ""
+    receiver: {}
   },
   name: 'conversationSlice',
   reducers: {
     startChatting:(state,action)=>{
-      state.chatId = action.payload
-    }
+      state.chatId = action.payload.id
+      state.receiver.username = action.payload.name
+    },
+    setReceiver:(state,action)=>{
+      state.receiver.objectId = action.payload
+      state.chat= []
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getConversations.fulfilled , (state , action) => {
@@ -84,5 +92,5 @@ const conversationSlice = createSlice({
   }
 })
 
-export const {startChatting} = conversationSlice.actions
+export const {startChatting,setReceiver} = conversationSlice.actions
 export default conversationSlice.reducer

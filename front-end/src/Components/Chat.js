@@ -34,7 +34,7 @@ function Chat() {
     )
     if(res.ok){
       const data = await res.json()
-      dispatch(getChat(chatId));
+      dispatch(getChat(data.conversation.objectId));
     }
   }
 
@@ -45,7 +45,7 @@ function Chat() {
         <h3 className="text-primary mr-10">Username</h3>
         <p className="text-gray">Pinned message body</p>
       </div>
-      <div className=" break-words px-2 flex flex-col  flex-grow bg-[#FAFAFA] " style={{height:"72vh"}}>
+      <div className=" break-words px-2 flex flex-col min-h-[71vh]  flex-grow  ">
         <p className="text-gray mx-auto">May 21,2024</p>
         {chat.map((msg) => {
           if (receiver.objectId == msg.reciver.objectId)
