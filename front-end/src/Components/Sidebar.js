@@ -17,7 +17,7 @@ function Sidebar({showConversations}) {
        name={conversation.name}
         msg={conversation.msg}
         date={conversation.date}
-        pic={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
+        pic={conversation.image}
         firstMessage={false}
         read={true}
         />

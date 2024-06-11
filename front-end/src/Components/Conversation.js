@@ -2,11 +2,14 @@ import React from 'react'
 import { FaCircle } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
 import { getChat, setReceiver, startChatting } from '../rtk/slices/conversationSlice';
+import image from '../images/image.png'
+
 function Conversation(props) {
+  
   const dispatch = useDispatch()
   function handleClick(){
     dispatch(getChat(props.id));
-    dispatch(startChatting({id:props.id,name:props.name}))
+    dispatch(startChatting({id:props.id,name:props.name,img:props.pic}))
     if(props.firstMessage){
       dispatch(setReceiver(props.id))
     }
@@ -15,7 +18,7 @@ function Conversation(props) {
     <div onClick={() => handleClick()} className = "flex-grow  overflow-auto">
     <div key={props.id} className ='hover:bg-green-50 flex justify-around items-center h-[5.3rem]'>
       <div className="relative mx-5 ">
-          <img className = "w-16 h-16 rounded-full" src = {props.pic} alt = ""/>
+          <img className = "w-16 h-16 rounded-full" src = {props.pic?props.pic:image} alt = ""/>
           <span className={`bottom-0 left-10 absolute  w-3.5 h-3.5 ${props.oStatus?"bg-online": "bg-gray" }  border-2 border-white  rounded-full`}></span>
       </div>
       <div className = 'flex-grow'>

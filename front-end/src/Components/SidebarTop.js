@@ -5,16 +5,20 @@ import { CiSearch } from "react-icons/ci";
 import { PiPencilSimpleLine } from "react-icons/pi";
 import ".././input.css";
 import Conversation from "./Conversation";
+import Slider from "./Slider";
+import Sidebar from "./Sidebar";
 import { useSelector } from "react-redux";
 
-function SidebarTop({showConversations,setShowConversations}) {
+function SidebarTop({showConversations,setShowConversations,getSlider}) {
   const [searchValue, setSearchValue] = useState("");
   const [users, setUsers] = useState([]);
   const {token} = useSelector(state => state.users)
-
+  
+  console.log(users,"users");
   useEffect(() => {
     async function fetchUsers() {
-      const res = await fetch("http://localhost:1337/api/classes/_User", {
+      const res = await fetch("http://localhost:1337/api/functions/getUsers", {
+        method:"POST",
         headers: {
           "X-Parse-REST-API-Key": "restAPIKey",
           "X-Parse-Application-Id": "appId",
@@ -22,7 +26,8 @@ function SidebarTop({showConversations,setShowConversations}) {
         },
       });
       const data = await res.json();
-      setUsers(data.results.map((user) => ({ name: user.username,id:user.objectId })));
+      console.log(data,'res');
+      setUsers(data.result.map((user) => ({ name: user.username,id:user.objectId,image:user.image })));
     }
     fetchUsers();
   }, []);
@@ -40,7 +45,7 @@ function SidebarTop({showConversations,setShowConversations}) {
   const filteredNames = users.filter((user) =>
     user.name.toLowerCase().includes(searchValue.toLowerCase())
   );
-
+  
   return (
     <>
     <div className="">
@@ -50,7 +55,8 @@ function SidebarTop({showConversations,setShowConversations}) {
         </div>
         <div className="w-20 flex items-center justify-around">
           <FontAwesomeIcon icon={faBars} className="size-5" />
-          <PiPencilSimpleLine className="size-6" />
+          <PiPencilSimpleLine onClick={getSlider}
+           className="size-6 hover:cursor-pointer hover:bg-stone-50" />
         </div>
       </div>
       <div className="mt-8 mb-2  mx-5  border-solid rounded-xl border-darkGray border-[0.1px]  flex justify-around items-center">
@@ -71,7 +77,7 @@ function SidebarTop({showConversations,setShowConversations}) {
                 <li key={user.id}>
                   <Conversation
                     id={user.id}
-                    pic={"https://flowbite.com/docs/images/people/profile-picture-5.jpg"}
+                    pic={user.image}
                     oStatus={false}
                     name={user.name}
                     msg={""}

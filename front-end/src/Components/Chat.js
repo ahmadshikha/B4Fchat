@@ -35,6 +35,7 @@ function Chat() {
     if(res.ok){
       const data = await res.json()
       dispatch(getChat(data.conversation.objectId));
+      setMsg('')
     }
   }
 
@@ -49,8 +50,8 @@ function Chat() {
         <p className="text-gray mx-auto">May 21,2024</p>
         {chat.map((msg) => {
           if (receiver.objectId == msg.reciver.objectId)
-            return <SentMessage text={msg.text} time={msg.createdAt.split("T")[1].slice(0,2)}/>;
-          else return <ReceivedMessage text={msg.text} time={msg.createdAt.split("T")[1].slice(0,2)}/> ;
+            return <SentMessage text={msg.text} time={msg.createdAt.split("T")[1].slice(0,5)}/>;
+          else return <ReceivedMessage text={msg.text} time={msg.createdAt.split("T")[1].slice(0,5)}/> ;
         })}
       </div>
       <div className="sticky bottom-2 flex items-center w-[97%]  ml-4 ">

@@ -5,4 +5,6 @@ Parse.Cloud.beforeSave(
         const acl = new Parse.ACL();
         acl.setPublicReadAccess(true)
         object.setACL(acl)
-    })
+        
+    }
+)

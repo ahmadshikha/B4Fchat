@@ -1,8 +1,4 @@
 import { createAsyncThunk , createSlice } from "@reduxjs/toolkit";
-
-
-
-
 export const getConversations = createAsyncThunk('conversationSlice/getConversations' , async (_, { getState }) => {
   const {users} = getState()
   const token = users.token
@@ -19,6 +15,7 @@ export const getConversations = createAsyncThunk('conversationSlice/getConversat
     
     const data = await res.json()
       return data.result.userArray.map((conversation) => {
+        console.log(conversation,"conv");
         let user;
         if(conversation.user.length==0)
           user = name
@@ -27,8 +24,9 @@ export const getConversations = createAsyncThunk('conversationSlice/getConversat
         return{
         id: conversation.id.objectId,
         name: user,
+        image: conversation.user[0].image,
         msg: conversation.message.text,
-        date: conversation.message.createdAt.split("T")[1].slice(0,2)+"h",
+        date: conversation.message.createdAt.split("T")[1].slice(0,5)
       }})
   }
 })
@@ -76,6 +74,7 @@ const conversationSlice = createSlice({
     startChatting:(state,action)=>{
       state.chatId = action.payload.id
       state.receiver.username = action.payload.name
+      state.receiver.img = action.payload.img
     },
     setReceiver:(state,action)=>{
       state.receiver.objectId = action.payload

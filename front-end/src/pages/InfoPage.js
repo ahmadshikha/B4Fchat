@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Button from "../Components/Button";
-import png from "../images/0px.png";
 import './arrowSelect.css'
 import Dialog from "../Components/Dialog";
 import { login } from "../rtk/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import image from '../images/image.png'
+
+
+
 const InfoPage = () => {
   const [inputType, setInputType] = useState('text'); 
   const [username,setUsername] = useState('')
@@ -15,9 +18,19 @@ const InfoPage = () => {
   const [email,setEmail] = useState('')
   const [city,setCity] = useState('City')
   const [error,setError]= useState('')
+  const [file,setFile]=useState(null)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+console.log(file);
 
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    let reader = new FileReader();
+    reader.onloadend = () => {
+      setFile( reader.result)
+    };
+    reader.readAsDataURL(file);
+  }
   const handleFocus = () => {
     setInputType('date');
   };
@@ -26,7 +39,6 @@ const InfoPage = () => {
     setInputType('text');
   };
 
-  const [preview, setPreview] = useState(png);
   const [isOpen, setIsOpen] = useState(false);
 
    const ToHome = async (e) =>{
@@ -41,7 +53,9 @@ const InfoPage = () => {
 
       },
       body:JSON.stringify(
-       { username,
+       { 
+        image:file,
+        username,
         password,
         email,
         countryName:country,
@@ -64,12 +78,7 @@ const InfoPage = () => {
       handleOpen()
     }
   }
-  const onFileChange = (e) => {
-    const selectedFile = e.target.files[0]
-    if(selectedFile){
-      setPreview(URL.createObjectURL(selectedFile))
-    }
-  }
+ 
   const handleOpen = () => {
     setIsOpen(true);
   };
@@ -85,7 +94,7 @@ const InfoPage = () => {
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
         <div className="flex justify-center mb-4">
           <div className="relative">
-            <img src={preview} alt="Profile" className="w-24 h-24 rounded-full" />
+            <img src={file ? file: image} alt="Profile" className="w-24 h-24 rounded-full" />
 
             <div class="relative">
               <label
@@ -116,7 +125,7 @@ const InfoPage = () => {
                 type="file"
                 name="button2"
                 id="button2"
-                onChange={onFileChange}
+                onChange={handleImageChange}
               />
             </div>
           </div>

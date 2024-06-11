@@ -13,7 +13,7 @@ Parse.Cloud.beforeSave(
     console.log(sessionToken,"asdf");
     
     let conversation = await new Parse.Query(Conversation)
-      .containedIn('users', usersList)
+      .containsAll('users', usersList)
       .first({ sessionToken: sessionToken });
     console.log(conversation);
 
@@ -44,6 +44,7 @@ Parse.Cloud.beforeSave(
     acl.setReadAccess(object.reciver, true);
 
     object.setACL(acl);
+    object.isSeen = false
   },
   {
     requireUser: true,
@@ -64,7 +65,16 @@ Parse.Cloud.beforeSave(
     },
   }
 );
+Parse.Cloud.define("setConversationSeen",async req =>{
+  const {conversation}= req.params
+  const user = req.user as Parse.User;
+  const sessionToken = req.user?.getSessionToken();
 
+  const isSeen = new Parse.Query(Msg,
+
+  )
+}
+)
 Parse.Cloud.define('getConversations', async req => {
   const object = req.params;
   const user = req.user as Parse.User;
@@ -142,4 +152,13 @@ Parse.Cloud.define('getChat', async req => {
     }
 
   return {msgs,reciver}
+})
+
+Parse.Cloud.define('getUsers', async req => {
+  const user = req.user as Parse.User;
+  const query = new Parse.Query(Parse.User);
+  const sessionToken = req.user?.getSessionToken();
+  query.notEqualTo('objectId', user.id);
+  const users = await query.find({sessionToken});
+  return users
 })
